@@ -1,0 +1,74 @@
+/*********
+
+Surveys:
+tblNeighborhoodBirdProjectData
+tblNeighborhoodBirdProjectDataOld
+
+duplicate IDs w/ data differences:
+(20169, 20170, 20171, 20172, 20173, 20174, 20175, 20547, 20548, 20549, 20550, 20551, 20552, 20553, 20554, 23148, 24947, 25209, 25549)
+
+
+Species:
+tblNHBPSpeciesData
+tblNHBPSpeciesDataBackup
+
+duplicate LID w/ data differences: 45413
+
+*********/
+
+
+
+/*
+SELECT *
+FROM (
+SELECT 1, ID, SURVEYDATE, StartTime, SITE, LOOP, STATION, WEATHER, OBSERVER1, Observer2, WIND, DateEntered, Notes
+FROM tblNeighborhoodBirdProjectData
+UNION
+SELECT 2, ID, SURVEYDATE, StartTime, SITE, LOOP, STATION, WEATHER, OBSERVER1, Observer2, WIND, DateEntered, Notes
+FROM tblNeighborhoodBirdProjectDataOld
+)
+WHERE ID IN (20169, 20170, 20171, 20172, 20173, 20174, 20175, 20547, 20548, 20549, 20550, 20551, 20552, 20553, 20554, 23148, 24947, 25209, 25549)
+*/
+
+
+/*
+SELECT LID, COUNT(LID)
+FROM (
+SELECT *
+FROM tblNHBPSpeciesData
+UNION
+SELECT *
+FROM tblNHBPSpeciesDataBackup
+)
+GROUP BY LID
+HAVING COUNT(LID) > 1
+*/
+
+
+/*
+SELECT * FROM tblNHBPSpeciesDataBackup
+WHERE LID NOT IN (
+  SELECT LID
+  FROM tblNHBPSpeciesData
+  WHERE tblNHBPSpeciesData.LID = tblNHBPSpeciesDataBackup.LID
+)
+*/
+
+
+/*
+SELECT *
+FROM `Neighborhood Bird Project Data`
+WHERE ID NOT IN (SELECT ID FROM tblNeighborhoodBirdProjectData) OR ID NOT IN (SELECT ID FROM tblNeighborhoodBirdProjectDataOld)
+*/
+
+
+/*
+SELECT * FROM (
+SELECT 1, ID, SURVEYDATE, StartTime, SITE, LOOP, STATION, WEATHER, OBSERVER1, WIND
+FROM tblNeighborhoodBirdProjectDataOld
+UNION ALL
+SELECT 2, ID, SURVEYDATE, StartTime, SITE, LOOP, STATION, WEATHER, OBSERVER1, WIND
+FROM `Neighborhood Bird Project Data`
+)
+WHERE ID IN (19552, 21810, 22476, 22563, 22784, 22785, 22786, 22787, 22788, 22789, 22790, 22791, 22792, 22793, 22966, 23103, 23104, 23105, 23106, 23107, 23108, 23109, 23110, 23111, 23112, 23113, 23114, 23115, 23116, 23117, 23118, 23119, 23120, 23121, 23122, 23123, 23124, 23125, 23126, 23127, 23128, 23129, 23130, 23131, 23132, 23133, 23134, 23135, 23136, 23137, 23138, 23139, 23140, 23141, 23142, 23585)
+*/

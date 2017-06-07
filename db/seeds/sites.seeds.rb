@@ -1,0 +1,16 @@
+Site.seed(:id,
+  {id: 1, name: 'Arboretum', is_active: true},
+  {id: 2, name: 'Bliner Property', is_active: false},
+  {id: 3, name: 'Carkeek Park', is_active: true},
+  {id: 4, name: 'Clark Lake Park', is_active: false},
+  {id: 5, name: 'Discovery Park', is_active: true},
+  {id: 6, name: 'Genesee', is_active: true},
+  {id: 7, name: 'Golden Gardens', is_active: true},
+  {id: 8, name: 'Jenkin\'s Creek Park', is_active: false},
+  {id: 9, name: 'Lake Forest Park', is_active: true},
+  {id: 10, name: 'Magnuson', is_active: true},
+  {id: 11, name: 'Seward Park', is_active: true},
+  {id: 12, name: 'Shadow Lake Bog', is_active: false},
+  {id: 13, name: 'Soos Creek', is_active: false},
+  {id: 14, name: 'Walsh Property', is_active: false}
+)
